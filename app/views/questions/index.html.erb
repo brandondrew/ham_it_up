@@ -1,35 +1,42 @@
-<h1>Listing questions</h1>
-
-<table>
+<%- model_class = Question -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Question %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Number</th>
-      <th>Text</th>
-      <th>Answer</th>
-      <th>Options</th>
-      <th>Pool</th>
-      <th>Group</th>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th><%= model_class.human_attribute_name(:number) %></th>
+      <th><%= model_class.human_attribute_name(:text) %></th>
+      <th><%= model_class.human_attribute_name(:answer) %></th>
+      <th><%= model_class.human_attribute_name(:options) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @questions.each do |question| %>
       <tr>
+        <td><%= question.id %></td>
         <td><%= question.number %></td>
         <td><%= question.text %></td>
         <td><%= question.answer %></td>
         <td><%= question.options %></td>
-        <td><%= question.pool %></td>
-        <td><%= question.group %></td>
-        <td><%= link_to 'Show', question %></td>
-        <td><%= link_to 'Edit', edit_question_path(question) %></td>
-        <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l question.created_at, format: :long %></td>
+        <td>
+          <%= link_to question_path(question), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to question_path(question), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Question', new_question_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_question_path,
+            :class => 'btn btn-primary' %>

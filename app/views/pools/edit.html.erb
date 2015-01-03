@@ -1,6 +1,5 @@
-<h1>Editing pool</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @pool %> |
-<%= link_to 'Back', pools_path %>
+<%- model_class = Pool -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => Pool %></h1>
+</div>
+<%= render :partial => 'form' %>

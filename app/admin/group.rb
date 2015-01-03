@@ -1,4 +1,5 @@
 ActiveAdmin.register Group do
+  permit_params :number, :description, :slug
 
 
   # See permitted parameters documentation:

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :pools
+
   resources :subelements
 
   resources :groups

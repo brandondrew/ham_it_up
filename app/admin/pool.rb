@@ -1,4 +1,5 @@
 ActiveAdmin.register Pool do
+  permit_params :number, :description, :slug, :source, :source_trail
 
 
   # See permitted parameters documentation:

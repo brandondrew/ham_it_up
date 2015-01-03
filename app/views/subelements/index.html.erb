@@ -1,31 +1,40 @@
-<h1>Listing subelements</h1>
-
-<table>
+<%- model_class = Subelement -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Subelement %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Number</th>
-      <th>Description</th>
-      <th>Slug</th>
-      <th>Pool</th>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th><%= model_class.human_attribute_name(:number) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:slug) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @subelements.each do |subelement| %>
       <tr>
+        <td><%= subelement.id %></td>
         <td><%= subelement.number %></td>
         <td><%= subelement.description %></td>
         <td><%= subelement.slug %></td>
-        <td><%= subelement.pool %></td>
-        <td><%= link_to 'Show', subelement %></td>
-        <td><%= link_to 'Edit', edit_subelement_path(subelement) %></td>
-        <td><%= link_to 'Destroy', subelement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l subelement.created_at, format: :long %></td>
+        <td>
+          <%= link_to subelement_path(subelement), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to subelement_path(subelement), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Subelement', new_subelement_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_subelement_path,
+            :class => 'btn btn-primary' %>

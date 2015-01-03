@@ -1,0 +1,31 @@
+<h1>Listing subelements</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>Description</th>
+      <th>Slug</th>
+      <th>Pool</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @subelements.each do |subelement| %>
+      <tr>
+        <td><%= subelement.number %></td>
+        <td><%= subelement.description %></td>
+        <td><%= subelement.slug %></td>
+        <td><%= subelement.pool %></td>
+        <td><%= link_to 'Show', subelement %></td>
+        <td><%= link_to 'Edit', edit_subelement_path(subelement) %></td>
+        <td><%= link_to 'Destroy', subelement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Subelement', new_subelement_path %>

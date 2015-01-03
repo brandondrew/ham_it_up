@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @subelement.number %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @subelement.description %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= @subelement.slug %>
+</p>
+
+<p>
+  <strong>Pool:</strong>
+  <%= @subelement.pool %>
+</p>
+
+<%= link_to 'Edit', edit_subelement_path(@subelement) %> |
+<%= link_to 'Back', subelements_path %>
